@@ -1,0 +1,61 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 2018/12/08 23:15:09
+// Design Name: 
+// Module Name: INSTMEM
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module INSTMEM(
+    input  [31:0]Addr,
+    output [31:0]Inst
+    );
+    wire [31:0]Rom[31:0];
+    assign Rom[32'h00] = 32'b000010_00000_00000_0000_0000_0000_0101;//j 5H
+    assign Rom[32'h01] = 32'hAAA0;
+    assign Rom[32'h02] = 32'hAAA1;
+    assign Rom[32'h03] = 32'hAAA2;
+    assign Rom[32'h04] = 32'hAAA3;
+    assign Rom[32'h05] = 32'b001000_00101_00111_0000_0001_0010_0111;//addi R7, R5, 0127H
+    assign Rom[32'h06] = 32'b001100_00110_00010_0010_0011_0001_1111;//andi R2, R6, 231FH
+    assign Rom[32'h07] = 32'b000000_00101_00111_00011_00000_100000;//add R3, R5, R7
+    assign Rom[32'h08] = 32'b000000_00111_00011_00100_00000_100010;//sub R4, R3, R4
+    assign Rom[32'h09] = 32'b000000_00110_00010_00011_00000_100100;//and R3, R6, R2
+    assign Rom[32'h0A] = 32'b000000_00100_00011_00110_00000_100101;//or R6, R4, R3
+    assign Rom[32'h0B] = 32'b001101_00011_00101_0001_0010_0011_0100;//ori R5, R3, 1234H
+    assign Rom[32'h0C] = 32'b100011_00101_00011_0010_0011_0101_0111;//lw R3, R5, 2357H
+    assign Rom[32'h0D] = 32'b101011_00110_00100_0011_0010_0001_1111;//sw R4, R6, 321FH
+    assign Rom[32'h0E] = 32'b000100_00101_00101_0001_0010_0011_1111;//beq R5, R5, 123FH
+    assign Rom[32'h0F] = 32'b000101_00111_00110_0010_0011_0111_1000;//bne R7, R6, 2378H
+    assign Rom[32'h10] = 32'h0;
+    assign Rom[32'h11] = 32'h0;
+    assign Rom[32'h12] = 32'h0;
+    assign Rom[32'h13] = 32'h0;
+    assign Rom[32'h14] = 32'h0;
+    assign Rom[32'h15] = 32'h0;
+    assign Rom[32'h16] = 32'h0;
+    assign Rom[32'h17] = 32'h0;
+    assign Rom[32'h18] = 32'h0;
+    assign Rom[32'h19] = 32'h0;
+    assign Rom[32'h1A] = 32'h0;
+    assign Rom[32'h1B] = 32'h0;
+    assign Rom[32'h1C] = 32'h0;
+    assign Rom[32'h1D] = 32'h0;
+    assign Rom[32'h1E] = 32'h0;
+    assign Rom[32'h1F] = 32'h0;
+    assign Inst = Rom[Addr[6:2]];
+endmodule
